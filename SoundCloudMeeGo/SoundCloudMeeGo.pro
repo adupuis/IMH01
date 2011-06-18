@@ -15,8 +15,14 @@ symbian:TARGET.CAPABILITY += NetworkServices
 # CONFIG += mobility
 # MOBILITY +=
 
-SOURCES += main.cpp mainwindow.cpp
-HEADERS += mainwindow.h
+QT += network webkit gui
+
+SOURCES += main.cpp mainwindow.cpp \
+    Oauth.cpp \
+    Browser.cpp
+HEADERS += mainwindow.h \
+    Oauth.h \
+    Browser.h
 FORMS += mainwindow.ui
 QT += declarative
 
