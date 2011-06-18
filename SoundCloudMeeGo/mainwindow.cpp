@@ -11,16 +11,35 @@
 #include "ui_mainwindow.h"
 
 #include <QtCore/QCoreApplication>
+#include <QtDeclarative>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
+    Init();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::Init()
+{
+     QString contentPath;
+#ifdef QT_DEBUG
+     contentPath = "/home/arnaud/Code/IMH01/SoundCloudMeeGo";
+#else
+     contentPath = QApplication::applicationDirPath();
+#endif
+     setFocusPolicy(Qt::StrongFocus);
+     setResizeMode(QDeclarativeView::SizeRootObjectToView);
+     setSource(QUrl::fromLocalFile(contentPath + "/ux-tablet/MainWindow.qml"));
+     rootContext()->setContextProperty("window", this);
+}
+
+void MainWindow::quit()
+{
+    QApplication::quit();
 }
 
 void MainWindow::setOrientation(ScreenOrientation orientation)

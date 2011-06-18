@@ -11,12 +11,13 @@
 #define MAINWINDOW_H
 
 #include <QtGui/QMainWindow>
+#include <QDeclarativeView>
 
 namespace Ui {
     class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+class MainWindow : public QDeclarativeView
 {
     Q_OBJECT
 public:
@@ -28,6 +29,9 @@ public:
 
     explicit MainWindow(QWidget *parent = 0);
     virtual ~MainWindow();
+
+    void Init();
+    Q_INVOKABLE void quit();
 
     void setOrientation(ScreenOrientation orientation);
     void showExpanded();

@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 
     MainWindow mainWindow;
     mainWindow.setOrientation(MainWindow::ScreenOrientationAuto);
+//    mainWindow.showFullScreen();
     mainWindow.showExpanded();
-
     return app.exec();
 }

@@ -18,7 +18,12 @@ symbian:TARGET.CAPABILITY += NetworkServices
 SOURCES += main.cpp mainwindow.cpp
 HEADERS += mainwindow.h
 FORMS += mainwindow.ui
+QT += declarative
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)
 qtcAddDeployment()
+
+OTHER_FILES += \
+    ux-tablet/MainWindow.qml \
+    ux-tablet/WindowButton.qml
