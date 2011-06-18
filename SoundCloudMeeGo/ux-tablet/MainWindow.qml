@@ -39,6 +39,23 @@ Rectangle {
             window.quit();
         }
     }
+    WindowButton {
+        id: quit_button2
+        x: 300
+        y:20
+        width: 200
+        height: 60
+        Text {
+            anchors.fill: parent
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            text:  "Quit 2"
+        }
+
+        function callback(){
+            window.quit();
+        }
+    }
 
     Image {
         source:"working-files/SoundCloudMeegoUX_images/main_display_area.png"
