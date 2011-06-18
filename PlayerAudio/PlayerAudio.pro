@@ -18,7 +18,9 @@ MOBILITY = multimedia
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    Playeraudio.cpp
+    Playeraudio.cpp \
+    Testapp.cpp
 
 HEADERS += \
-    Playeraudio.h
+    Playeraudio.h \
+    Testapp.h

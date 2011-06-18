@@ -8,7 +8,7 @@ class PlayerAudio : public QObject
 {
     Q_OBJECT
 public:
-    PlayerAudio();
+    PlayerAudio(QObject *_parent = 0);
     virtual ~PlayerAudio();
 
     void                addUrl                      (const QString &_url);
@@ -19,7 +19,7 @@ public:
       * clamp 0<_pos<1
       * TODO if not fully load ?
       */
-    void                setPositionRelative         (qint64 _pos);
+    void                setPositionRelative         (float _pos);
     /**
       * clamp 0<_ms<duration
       */
@@ -28,18 +28,21 @@ public:
     /**
       * ms
       */
-    qint64              getDuration                 () const;
+    qint64              position                  () const;
+    qint64              duration                 () const;
 
     /**
       * 0 not loaded
       * 1 fully loaded
       */
-    int                 getBufferRatio              () const;
+    float               getBufferRatio              () const;
 
     /**
       * clamp 0<v<100
       */
     void                setVolume                   (int _volume);
+
+    void                setPlaylistPostion          (int _pos);
 
     int                 getPlaylistPosition         ();
 
@@ -49,9 +52,13 @@ public slots:
 signals:
     void                endOfTrack                  ();
     void                endOfPlaylist               ();
+    void                positionChanged             (qint64);
 private:
     QMediaPlayer*       m_pPlayer;
     QMediaPlaylist*     m_pPlaylist;
+private slots:
+    void                stateChanged                (QMediaPlayer::State);
+    void                playlistChanged             (int);
 };
 
 #endif // PLAYERAUDIO_H
