@@ -2,8 +2,8 @@
 
 REMOTE_HOST="192.168.83.128"
 PROJECT_PATH=~/IMH01
-SUBPROJECT_PATH=PlayerAudio
-BIN=PlayerAudio
+SUBPROJECT_PATH=SoundCloudMeeGo
+BIN=SoundCloudMeeGo
 
 usage()
 {

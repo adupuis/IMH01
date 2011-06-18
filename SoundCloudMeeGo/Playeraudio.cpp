@@ -89,7 +89,6 @@ float PlayerAudio::getBufferRatio() const
 //    qint64 read = device->bytesAvailable();
 //    qint64 total = device->size();
 //    return (float)total / (float)read;
-
 }
 
 int PlayerAudio::getPlaylistPosition()

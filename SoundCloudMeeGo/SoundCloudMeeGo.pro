@@ -12,17 +12,20 @@ symbian:TARGET.CAPABILITY += NetworkServices
 # If your application uses the Qt Mobility libraries, uncomment
 # the following lines and add the respective components to the 
 # MOBILITY variable. 
-# CONFIG += mobility
-# MOBILITY +=
+CONFIG += mobility
+MOBILITY += multimedia
 
 QT += network webkit gui
 
 SOURCES += main.cpp mainwindow.cpp \
     Oauth.cpp \
-    Browser.cpp
+    Browser.cpp \
+    Playeraudio.cpp
 HEADERS += mainwindow.h \
     Oauth.h \
-    Browser.h
+    Browser.h \
+    Playeraudio.h
+
 FORMS += mainwindow.ui
 QT += declarative
 
