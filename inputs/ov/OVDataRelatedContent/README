@@ -1,0 +1,13 @@
+To compile OVDataRelatedContent, do the usual with the OVDataRelatedContent.pro file.
+
+To compile the YouTube data engine, do the same with plugins/RelatedContentYouTubeDataEngine/RelatedContentYouTubeDataEngine.pro. The generated library is to be used as a plugin for the libOVDataRelatedContent. This library have to be aware of the location of the data engine.
+Data engine being plugins to this library, they are loaded at runtime and on demand.
+So do not forget to put the libOVDataRelatedContent<PROVIDER>DataEngine.so in the right directory.
+
+If you absolutly need to build the test app, do the regular things with the test_app/RelatedContentTestApp.pro.
+The binary is generated in the out/ directory so you will need to add the ../ directory to the LD_LIBRARY_PATH. The test app use the plugins/build/ directory as its plugins directory, so put the YouTube data engine in this directory or modify the test app to fit your settings.
+
+
+If you want to make an application "related content aware", you have to understand how the related content library is working : it is all asynchronous and communicates thanks to the Qt signals/slots mechanism.
+
+Please refers to the API documentation to learn more about the library usage.
