@@ -148,12 +148,6 @@ Rectangle {
             }
         }
     }
-    Image {
-        id: indicator
-        x: 180
-        y: 90
-        source: "images/indicator.png"
-    }
 
     Image {
         source:"working-files/SoundCloudMeegoUX_images/main_display_area.png"
@@ -161,5 +155,11 @@ Rectangle {
         x:0 ; y:0
         width:1366
         height:768
+    }
+    Image {
+        id: indicator
+        x: 210
+        y: 82
+        source: "images/indicator.png"
     }
 }
