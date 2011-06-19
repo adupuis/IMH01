@@ -15,19 +15,41 @@ symbian:TARGET.CAPABILITY += NetworkServices
 CONFIG += mobility
 MOBILITY += multimedia
 
-QT += network webkit gui
+QT += network webkit gui declarative
 
-SOURCES += main.cpp mainwindow.cpp \
+SOURCES += main.cpp \
+    mainwindow.cpp \
+    user.cpp \
+    track.cpp \
+    playlist.cpp \
+    group.cpp \
+    comment.cpp \
+    soundcloudapi.cpp \
+    app.cpp \
+    label.cpp  \
     Oauth.cpp \
     Browser.cpp \
     Playeraudio.cpp
+
+
 HEADERS += mainwindow.h \
+    user.h \
+    track.h \
+    playlist.h \
+    group.h \
+    comment.h \
+    soundcloudapi.h \
+    app.h \
+    label.h \
+    include/qjson/parser.h \
     Oauth.h \
     Browser.h \
     Playeraudio.h
 
+LIBS += -L../SoundCloudMeeGo/lib -lqjson
+
 FORMS += mainwindow.ui
-QT += declarative
+#QT += declarative
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)
@@ -36,4 +58,7 @@ qtcAddDeployment()
 OTHER_FILES += \
     ux-tablet/MainWindow.qml \
     ux-tablet/WindowButton.qml \
-    ux-tablet/MenuButton.qml
+    ux-tablet/MenuButton.qml \
+    ux-tablet/LoginScreen.qml \
+    ux-tablet/Spectrum.qml
+

@@ -245,4 +245,24 @@ Rectangle {
             }
         ]
     }
+
+    LoginScreen {
+        x:20
+        y:110
+
+        function login(login,password) {
+            window.login(login,password);
+        }
+    }
+
+    Spectrum {
+        id: spectrum
+        x: 60
+        y: 200
+        height: 200
+        width:1200
+    }
+    function onUpdateProgress(ratio) {
+        spectrum.onUpdateProgress(ratio);
+    }
 }

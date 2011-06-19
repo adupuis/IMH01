@@ -53,13 +53,15 @@ public slots:
 signals:
     void                endOfTrack                  ();
     void                endOfPlaylist               ();
-    void                positionChanged             (qint64);
+    //void                positionChanged             (qint64);
+    void                positionChangedRel          (QVariant);
 private:
     QMediaPlayer*       m_pPlayer;
     QMediaPlaylist*     m_pPlaylist;
 private slots:
     void                stateChanged                (QMediaPlayer::State);
     void                playlistChanged             (int);
+    void                computePosition             (qint64 _abs);
 };
 
 #endif // PLAYERAUDIO_H

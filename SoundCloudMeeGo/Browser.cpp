@@ -1,7 +1,7 @@
 #include <Browser.h>
 
 Browser::Browser()
-    : m_strEmail                ( "" )
+    : m_strLogin                ( "" )
     , m_strPassword             ( "" )
     , m_bLoadFinished           ( false )
     , m_iNbRedirections         ( 0 )
@@ -62,6 +62,21 @@ Browser::~Browser()
 //        {
 //            delete m_networkAccessManager;
 //        }
+}
+
+QString Browser::getLogin()
+{
+    return m_strLogin;
+}
+
+void Browser::setLogin( const QString& _strLogin )
+{
+    m_strLogin = _strLogin;
+}
+
+void Browser::setPassword( const QString& _strPassword )
+{
+    m_strPassword = _strPassword;
 }
 
 QString Browser::getAccessToken()
@@ -203,6 +218,74 @@ void Browser::slotHandleLoadFinished( bool _ok )
     QUrl currentUrl = m_webView->url();
     QString strCurrentUrl = currentUrl.toString();
     qDebug() << "Current URL:" << strCurrentUrl;
+
+
+
+
+    qDebug() << "Will parse page just loaded...";
+    if( !_ok )
+    {
+        qDebug() << "Error while loading page! (this might be normal)";
+    }
+    else
+    {
+        QWebFrame* mainFrame = m_webView->page()->mainFrame();
+
+        qDebug() << "Page loaded.";
+
+        // Parsing oauth or login page for processing login/authorization action
+        qDebug() << "Start parsing inputs.";
+        QWebElementCollection inputs = mainFrame->documentElement().findAll( "input" );
+        foreach( QWebElement input, inputs )
+        {
+            qDebug() << "id:" << input.attribute( "id" );
+            if( input.attribute( "id" ) == "username" )
+            {
+                qDebug() << "id:" << input.attribute( "id" ) << "- value:" << input.attribute( "value" );
+                input.setAttribute( "value", m_strLogin );
+            }
+            else if( input.attribute( "id" ) == "password" )
+            {
+                qDebug() << "id:" << input.attribute( "id" ) << "- value:" << input.attribute( "value" );
+                input.setAttribute( "value", m_strPassword );
+            }
+
+
+//            else if( input.attribute( "type" ) == "submit" && input.attribute( "name" ) == "login" )
+//            {
+////                        OV_FLASHING_MSG( "id: %s - value: %s", input.attribute( "id" ).toUtf8().constData(),  input.attribute( "value" ).toUtf8().constData() );
+//                input.evaluateJavaScript( "this.click()" );
+//                if( m_bLoginAction )
+//                {
+//                    m_bJustLoggedIn = true;
+//                    m_bLoginDone = true;
+//                }
+//                if( m_bOAuthAction )
+//                {
+//                    m_bOAuthDone = true;
+//                }
+////                        break;  // TODO : test this!!!
+//            }
+//            else if( input.attribute( "type" ) == "submit" && input.attribute( "name" ) == "grant_clicked" )
+//            {
+////                        OV_FLASHING_MSG( "id: %s - value: %s", input.attribute( "id" ).toUtf8().constData(),  input.attribute( "value" ).toUtf8().constData() );
+//                input.evaluateJavaScript( "this.click()" );
+//            }
+        }
+        qDebug() << "Done parsing inputs.";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     m_bLoadFinished = false;
 }

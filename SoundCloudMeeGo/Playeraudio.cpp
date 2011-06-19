@@ -9,10 +9,10 @@ PlayerAudio::PlayerAudio(QObject *_parent)
 
     m_pPlayer->setPlaylist(m_pPlaylist);
 
-    bool ret = connect(m_pPlayer, SIGNAL(stateChanged(QMediaPlayer::State)),
+    connect(m_pPlayer, SIGNAL(stateChanged(QMediaPlayer::State)),
             this, SLOT(stateChanged(QMediaPlayer::State)));
-    Q_ASSERT(ret);
-    connect(m_pPlayer, SIGNAL(positionChanged(qint64)), this, SIGNAL(positionChanged(qint64)));
+
+    connect(m_pPlayer, SIGNAL(positionChanged(qint64)), this, SLOT(computePosition(qint64)));
     connect(m_pPlaylist, SIGNAL(currentIndexChanged(int)), this, SLOT(playlistChanged(int)));
 }
 
@@ -126,4 +126,10 @@ void PlayerAudio::playlistChanged(int)
     if( m_pPlaylist->currentIndex() >= m_pPlaylist->mediaCount() - 1) {
         emit endOfTrack();
     }
+}
+
+void PlayerAudio::computePosition(qint64 _abs)
+{
+    //emit positionChanged(_abs);
+    emit positionChangedRel(QVariant((float)_abs / (float)duration()));
 }
