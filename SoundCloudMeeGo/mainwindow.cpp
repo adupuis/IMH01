@@ -159,3 +159,9 @@ void MainWindow::playTrack(Track* track)
     emit setWaveForm(QVariant(track->mWaveformUrl));
 #endif
 }
+
+void MainWindow::playerSeek(int mousex, int width)
+{
+    m_pPlayerAudio->setPositionRelative( (float)mousex / (float)width );
+
+}

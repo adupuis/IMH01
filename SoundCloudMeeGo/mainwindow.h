@@ -38,6 +38,7 @@ public:
     void Init();
     Q_INVOKABLE void quit();
     Q_INVOKABLE void login(QString strLogin, QString strPassword);
+    Q_INVOKABLE void playerSeek(int mousex, int width);
 
     void setOrientation(ScreenOrientation orientation);
     void showExpanded();

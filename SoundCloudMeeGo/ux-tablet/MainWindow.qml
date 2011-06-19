@@ -278,4 +278,8 @@ Rectangle {
     function onSetWaveForm(img) {
         spectrum.spectrum.source = img;
     }
+    function playerSeek(param) {
+        window.playerSeek(param, spectrum.width);
+
+    }
 }
