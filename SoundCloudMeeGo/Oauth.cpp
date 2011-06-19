@@ -29,4 +29,5 @@ QString Oauth::getAccessToken()
 void Oauth::slotAccessTokenRetrieved( QString& _strAccessToken )
 {
     qDebug() << "access token retrieved:" << _strAccessToken;
+    emit sigAccessTokenAvailable( m_strAccessToken );
 }

@@ -13,6 +13,8 @@
 #include <QtCore/QCoreApplication>
 #include <QtDeclarative>
 
+#include <Oauth.h>
+
 MainWindow::MainWindow(QWidget *parent)
 {
     Init();
@@ -27,7 +29,7 @@ void MainWindow::Init()
 {
      QString contentPath;
 #ifdef QT_DEBUG
-     contentPath = "/home/arnaud/Code/IMH01/SoundCloudMeeGo";
+     contentPath = "/home/qdesert/HACKAT/IMH01/SoundCloudMeeGo";
 #else
      contentPath = QApplication::applicationDirPath();
 #endif
@@ -40,6 +42,13 @@ void MainWindow::Init()
 void MainWindow::quit()
 {
     QApplication::quit();
+}
+
+void MainWindow::login()
+{
+//    QApplication::quit();
+    qDebug() << "LOGIN!!!!!!!!!!!!!!!!!!!!!!";
+    Oauth* oauth = new Oauth;
 }
 
 void MainWindow::setOrientation(ScreenOrientation orientation)

@@ -162,4 +162,13 @@ Rectangle {
         y: 82
         source: "images/indicator.png"
     }
+
+    LoginScreen {
+        x:20
+        y:110
+
+        function login() {
+            window.login();
+        }
+    }
 }

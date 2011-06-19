@@ -32,6 +32,7 @@ public:
 
     void Init();
     Q_INVOKABLE void quit();
+    Q_INVOKABLE void login();
 
     void setOrientation(ScreenOrientation orientation);
     void showExpanded();
