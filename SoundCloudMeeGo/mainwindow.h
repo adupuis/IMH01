@@ -12,6 +12,7 @@
 
 #include <QtGui/QMainWindow>
 #include <QDeclarativeView>
+#include <QVariant>
 
 class PlayerAudio;
 class SoundCloudApi;
@@ -37,12 +38,17 @@ public:
     void Init();
     Q_INVOKABLE void quit();
     Q_INVOKABLE void login(QString strLogin, QString strPassword);
+    Q_INVOKABLE void playerSeek(int mousex, int width);
 
     void setOrientation(ScreenOrientation orientation);
     void showExpanded();
+signals:
+    void setWaveForm(QVariant);
+
 private slots:
     void getTrackInfo(QString&);
-    void playTrack(Track*);
+    void playTrack(Track* t);
+    void playTrack(); //fake
 private:
     Ui::MainWindow *ui;
     PlayerAudio*     m_pPlayerAudio;

@@ -1,12 +1,19 @@
 import QtQuick 1.0
 
 Rectangle {
+    id : spect
     visible: false;
+    MouseArea {
+        id: mousearea
+        anchors.fill: parent
+        onPressed: { playerSeek(mouse.x) }
+    }
+
     Rectangle {
         id: played
         color: "#FF0000"
         width: 0
-        height: parent.height
+        height: spectrum.height
     }
 
     Rectangle {
@@ -14,13 +21,13 @@ Rectangle {
         color: "#666666"
         x : 0
         width:  parent.width
-        height: parent.height
+        height: spectrum.height
     }
 
 
     Image {
         id: spectrum
-        source: "http://w1.sndcdn.com/fxguEjG4ax6B_m.png"
+        source : "local.png" //FAKE !!
         width: 1200
     }
 

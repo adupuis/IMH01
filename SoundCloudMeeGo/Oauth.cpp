@@ -11,9 +11,12 @@ Oauth::Oauth()
     qDebug() << "Constructing OauthTest...";
 
     m_browser = new Browser;
-
+#ifdef FAKE
+    QTimer::singleShot(1000, this, SLOT(slotAccessTokenRetrieved(QString)));
+#else
     connect( m_browser, SIGNAL( sigAccessTokenRetrieved( const QString& ) ),
              this,      SLOT(   slotAccessTokenRetrieved( const QString& ) ) );
+#endif
 }
 
 Oauth::~Oauth()

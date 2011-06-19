@@ -12,6 +12,7 @@ public:
     virtual ~PlayerAudio();
 
     void                addUrl                      (const QString &_url);
+    void                addFile                     (const QString &_file); //fake only
     void                clearPlaylist               ();
     void                play                        ();
     void                pause                       ();

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 REMOTE_HOST="192.168.83.128"
-PROJECT_PATH=~/Code/IMH01
+PROJECT_PATH=~/IMH01
 SUBPROJECT_PATH=SoundCloudMeeGo
 BIN=SoundCloudMeeGo
 RESOURCES=ux-tablet
