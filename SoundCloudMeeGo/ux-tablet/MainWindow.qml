@@ -272,6 +272,12 @@ Rectangle {
             login.visible = false;
             spectrum.setVisibile();
         }
+        function startSpectrum() {
+            window.startSpectrum();
+        }
+        function stopSpectrum() {
+            window.stopSpectrum();
+        }
 
         Dashboard {
             id: dashboard
