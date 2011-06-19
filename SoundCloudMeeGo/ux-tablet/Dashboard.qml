@@ -1,7 +1,9 @@
 import Qt 4.7
 Rectangle {
+    id: dashboard
     width:1326 
     height:638
+    visible: false;
     Image {
         source:"working-files/SoundCloudMeegoUXDashboard_images/background.png"
         id:background

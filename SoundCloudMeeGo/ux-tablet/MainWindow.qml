@@ -273,10 +273,16 @@ Rectangle {
             spectrum.setVisibile();
         }
 
-        //    Dashboard {
-        //        x:20
-        //        y:110
-        //    }
+        Dashboard {
+            id: dashboard
+            x:0
+            y:0
+        }
+        function dashboardVisible() {
+            login.visible = false;
+            dashboard.visible = true;
+        }
+
         function onSetWaveForm(img) {
             spectrum.spectrum.source = img;
         }

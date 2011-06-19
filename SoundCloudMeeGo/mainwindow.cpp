@@ -73,8 +73,9 @@ void MainWindow::login(QString strLogin, QString strPassword)
     connect(oauth, SIGNAL(sigAccessTokenAvailable(QString&)),
             this, SLOT(getTrackInfo(QString&)));
 #else
-    QTimer::singleShot(1000, rootObject(), SLOT(spectrumVisible()));
-    QTimer::singleShot(1100, this, SLOT(playTrack()));
+//    QTimer::singleShot(1000, rootObject(), SLOT(spectrumVisible()));
+//    QTimer::singleShot(1100, this, SLOT(playTrack()));
+    QTimer::singleShot(1000, rootObject(), SLOT(dashboardVisible()));
 #endif
 }
 
