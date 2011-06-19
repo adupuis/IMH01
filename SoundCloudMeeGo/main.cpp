@@ -3,6 +3,7 @@
 #include <QtGui/QApplication>
 
 #include "Playeraudio.h"
+#include <QGraphicsObject>
 
 int main(int argc, char *argv[])
 {

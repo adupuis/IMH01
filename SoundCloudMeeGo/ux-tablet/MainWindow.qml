@@ -171,6 +171,8 @@ Rectangle {
         function login(login,password) {
             window.login(login,password);
         }
+    }
+
     Spectrum {
         id: spectrum
         x: 60
