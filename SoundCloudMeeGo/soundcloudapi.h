@@ -14,7 +14,12 @@
 #include "user.h"
 #include "include/qjson/parser.h"
 
+
+#define USER 0
+#define TRACK 1
+
 #define CLIENT_ID   "ef7c3301f5a463034354f0bfa1ee0236"
+
 
 class SoundCloudApi : public QObject
 {
@@ -109,6 +114,7 @@ private:
     void startRequest( QString& _strUrl );
     User * parseUser( QByteArray response );
     Track * parseTrack( QByteArray response );
+    int mReplyType;
 
     QNetworkRequest setSSLConfig( );
 

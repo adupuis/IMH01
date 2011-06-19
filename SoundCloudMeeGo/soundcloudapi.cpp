@@ -23,6 +23,7 @@ SoundCloudApi::SoundCloudApi( )
     , urlActivities( "/activities" )
     , urlApps( "/apps" )
     , urlResolve( "/resolve" )
+    , mReplyType( -1 )
 {
     mNetworkAccessManager = new QNetworkAccessManager;
     mParser = new QJson::Parser;
@@ -257,6 +258,7 @@ void SoundCloudApi::getTrack( int track_id )
     url.append( "/" );
     url.append( QString::number(track_id) );
 
+    mReplyType = TRACK;
 
     startRequest( url );
 }
@@ -656,6 +658,8 @@ void SoundCloudApi::getMe( )
     QString url = urlRoot;
     url.append( urlMe );
 
+    mReplyType = USER;
+
     startRequest( url );
 }
 
@@ -679,7 +683,8 @@ void SoundCloudApi::startRequest( QString& _strUrl )
     _strUrl.append( ".json?oauth_token=" );
     _strUrl.append( mOAuthToken );
 
-    qDebug() << "Api request: " << _strUrl;
+
+    qDebug() << "api request: " << _strUrl;
 
     networkRequest.setUrl( QUrl( _strUrl ) );
 
@@ -711,6 +716,19 @@ void SoundCloudApi::slotHandleNetworkData( QNetworkReply* _Reply )
     if( !_Reply->error() )
     {
         qDebug() << "Reply received";
+
+        switch( mReplyType )
+        {
+        case USER:
+            parseUser( _Reply->readAll() );
+            break;
+
+        case TRACK:
+            parseTrack( _Reply->readAll() );
+            break;
+        }
+
+        /*
         const QUrl url = _Reply->request().url();
 
         qDebug() << url.path();
@@ -729,6 +747,7 @@ void SoundCloudApi::slotHandleNetworkData( QNetworkReply* _Reply )
         {
             parseTrack( _Reply->readAll() );
         }
+        */
     }
     else
     {
