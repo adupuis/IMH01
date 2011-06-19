@@ -14,10 +14,20 @@
 #include <QtDeclarative>
 
 #include <Oauth.h>
+#include "Playeraudio.h"
+#include "soundcloudapi.h"
+#include <QGraphicsObject>
 
 MainWindow::MainWindow(QWidget *parent)
 {
     Init();
+    m_pPlayerAudio = new PlayerAudio(this);
+
+    //player.addUrl("http://api.soundcloud.com/tracks/4951129/stream?client_id=ef7c3301f5a463034354f0bfa1ee0236");
+    //player.play();
+    QObject::connect(m_pPlayerAudio, SIGNAL(positionChangedRel(QVariant)),
+                     rootObject(), SLOT(onUpdateProgress(QVariant)));
+
 }
 
 MainWindow::~MainWindow()
@@ -52,6 +62,11 @@ void MainWindow::login(QString strLogin, QString strPassword)
     oauth->setLogin( strLogin );
     oauth->setPassword( strPassword );
     oauth->start();
+    bool ret = connect(oauth, SIGNAL(sigAccessTokenAvailable(QString&)),
+                rootObject(), SLOT(spectrumVisible()));
+    Q_ASSERT(ret);
+    connect(oauth, SIGNAL(sigAccessTokenAvailable(QString&)),
+            this, SLOT(playTrack()));
 }
 
 void MainWindow::setOrientation(ScreenOrientation orientation)
@@ -106,4 +121,10 @@ void MainWindow::showExpanded()
 #else
     show();
 #endif
+}
+
+
+void MainWindow::playTrack()
+{
+
 }

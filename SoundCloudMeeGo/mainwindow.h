@@ -13,6 +13,8 @@
 #include <QtGui/QMainWindow>
 #include <QDeclarativeView>
 
+class PlayerAudio;
+
 namespace Ui {
     class MainWindow;
 }
@@ -36,9 +38,11 @@ public:
 
     void setOrientation(ScreenOrientation orientation);
     void showExpanded();
-
+private slots:
+    void playTrack();
 private:
     Ui::MainWindow *ui;
+    PlayerAudio*     m_pPlayerAudio;
 };
 
 #endif // MAINWINDOW_H

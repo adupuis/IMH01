@@ -27,7 +27,7 @@ signals:
 
 private slots:
 
-    void slotAccessTokenRetrieved( QString& _strAccessToken );
+    void slotAccessTokenRetrieved( const QString& _strAccessToken );
 
 
 private:
