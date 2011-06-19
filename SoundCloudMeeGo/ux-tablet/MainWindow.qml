@@ -245,41 +245,44 @@ Rectangle {
             }
         ]
     }
+    Rectangle {
+        id: mainarea
+        x: 20
+        y: 110
+        LoginScreen {
+            id: login
+            x:0
+            y:0
 
-    LoginScreen {
-        id: login
-        x:20
-        y:110
-
-        function login(login,password) {
-            window.login(login,password);
+            function login(login,password) {
+                window.login(login,password);
+            }
         }
-    }
+        Spectrum {
+            id: spectrum
+            x: 40
+            y: 90
+            height: 200
+            width:1200
+        }
+        function onUpdateProgress(ratio) {
+            spectrum.onUpdateProgress(ratio);
+        }
+        function spectrumVisible() {
+            login.visible = false;
+            spectrum.setVisibile();
+        }
 
-    Spectrum {
-        id: spectrum
-        x: 60
-        y: 200
-        height: 200
-        width:1200
-    }
-    function onUpdateProgress(ratio) {
-        spectrum.onUpdateProgress(ratio);
-    }
-    function spectrumVisible() {
-        login.visible = false;
-        spectrum.setVisibile();
-    }
+        //    Dashboard {
+        //        x:20
+        //        y:110
+        //    }
+        function onSetWaveForm(img) {
+            spectrum.spectrum.source = img;
+        }
+        function playerSeek(param) {
+            window.playerSeek(param, spectrum.width);
 
-//    Dashboard {
-//        x:20
-//        y:110
-//    }
-    function onSetWaveForm(img) {
-        spectrum.spectrum.source = img;
-    }
-    function playerSeek(param) {
-        window.playerSeek(param, spectrum.width);
-
+        }
     }
 }
