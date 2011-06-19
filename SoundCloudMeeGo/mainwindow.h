@@ -46,7 +46,8 @@ signals:
 
 private slots:
     void getTrackInfo(QString&);
-    void playTrack(Track*);
+    void playTrack(Track* t);
+    void playTrack(); //fake
 private:
     Ui::MainWindow *ui;
     PlayerAudio*     m_pPlayerAudio;

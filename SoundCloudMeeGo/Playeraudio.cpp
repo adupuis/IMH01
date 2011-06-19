@@ -1,5 +1,6 @@
 #include "Playeraudio.h"
 #include <QDebug>
+#include <QFile>
 
 PlayerAudio::PlayerAudio(QObject *_parent)
     :   QObject         (_parent)
@@ -26,6 +27,11 @@ PlayerAudio::~PlayerAudio()
 void PlayerAudio::addUrl(const QString &_url)
 {
     m_pPlaylist->addMedia(QMediaContent(QUrl(_url)));
+}
+
+void PlayerAudio::addFile(const QString &_file)
+{
+    m_pPlayer->setMedia(QUrl::fromLocalFile(_file));
 }
 
 void PlayerAudio::clearPlaylist()

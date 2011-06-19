@@ -50,6 +50,7 @@ LIBS += -L../SoundCloudMeeGo/lib -lqjson
 
 FORMS += mainwindow.ui
 #QT += declarative
+DEFINES += FAKE
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)

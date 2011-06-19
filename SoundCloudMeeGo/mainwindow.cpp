@@ -22,17 +22,15 @@ MainWindow::MainWindow(QWidget *parent)
 {
     Init();
     m_pPlayerAudio = new PlayerAudio(this);
-
-    //player.addUrl("http://api.soundcloud.com/tracks/4951129/stream?client_id=ef7c3301f5a463034354f0bfa1ee0236");
-    //player.play();
+#ifndef FAKE
+    m_pSca = new SoundCloudApi();
+    QObject::connect(m_pSca, SIGNAL(sigTrackRequestFinished(Track*)),
+                     this, SLOT(playTrack(Track*)));
+#endif
     QObject::connect(m_pPlayerAudio, SIGNAL(positionChangedRel(QVariant)),
                      rootObject(), SLOT(onUpdateProgress(QVariant)));
     QObject::connect(this, SIGNAL(setWaveForm(QVariant)),
                      rootObject(), SLOT(onSetWaveForm(QVariant)));
-    m_pSca = new SoundCloudApi();
-    QObject::connect(m_pSca, SIGNAL(sigTrackRequestFinished(Track*)),
-                     this, SLOT(playTrack(Track*)));
-
 }
 
 MainWindow::~MainWindow()
@@ -64,6 +62,7 @@ void MainWindow::login(QString strLogin, QString strPassword)
 {
     qDebug() << "login:" << strLogin;
     qDebug() << "password:" << strPassword;
+#ifndef FAKE
     Oauth* oauth = new Oauth;
     oauth->setLogin( strLogin );
     oauth->setPassword( strPassword );
@@ -73,6 +72,10 @@ void MainWindow::login(QString strLogin, QString strPassword)
     Q_ASSERT(ret);
     connect(oauth, SIGNAL(sigAccessTokenAvailable(QString&)),
             this, SLOT(getTrackInfo(QString&)));
+#else
+    QTimer::singleShot(1000, rootObject(), SLOT(spectrumVisible()));
+    QTimer::singleShot(1100, this, SLOT(playTrack()));
+#endif
 }
 
 void MainWindow::setOrientation(ScreenOrientation orientation)
@@ -137,10 +140,22 @@ void MainWindow::getTrackInfo(QString& _token)
     m_pSca->getTrack(4951129);
 }
 
+
+void MainWindow::playTrack()
+{
+    playTrack(0);
+}
+
 void MainWindow::playTrack(Track* track)
 {
+#ifdef FAKE
+    m_pPlayerAudio->addFile(QString("/home/meego/local.mp3"));
+    m_pPlayerAudio->play();
+    emit setWaveForm(QString("/home/meego/local.png"));
+#else
     qDebug() << "playTrack" << track->mStreamUrl;
     m_pPlayerAudio->addUrl(track->mStreamUrl);
     m_pPlayerAudio->play();
     emit setWaveForm(QVariant(track->mWaveformUrl));
+#endif
 }

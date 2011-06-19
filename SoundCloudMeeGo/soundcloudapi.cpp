@@ -755,7 +755,7 @@ void SoundCloudApi::slotHandleNetworkData( QNetworkReply* _Reply )
     }
 }
 
-User * SoundCloudApi::parseUser( QByteArray response )
+void SoundCloudApi::parseUser( QByteArray response )
 {
     qDebug() << "Parsing reply ...";
 
