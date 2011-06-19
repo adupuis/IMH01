@@ -303,47 +303,46 @@ Rectangle {
             {
                 name: "ma-profile";
                 when: menu_you.buttonSelected
-                PropertyChanges { target: profile; visible: true;}
-                PropertyChanges { target: dashboard; visible: false;}
-                PropertyChanges { target: login; visible: false;}
-                PropertyChanges { target: spectrum; visible: false;}
+                PropertyChanges { target: profile; visible: true;opacity:1;}
+                PropertyChanges { target: dashboard; visible: false;opacity:0;}
+                PropertyChanges { target: login; visible: false;opacity:0;}
+                PropertyChanges { target: spectrum; visible: false;opacity:0;}
             },
             State
             {
                 name: "ma-dashboard";
                 when: menu_dashboard.buttonSelected
-//                PropertyChanges { target: dashboard; rotation: 360 }
-                PropertyChanges { target: profile; visible: false;}
-                PropertyChanges { target: dashboard; visible: true;}
-                PropertyChanges { target: login; visible: false;}
-                PropertyChanges { target: spectrum; visible: false;}
+                PropertyChanges { target: profile; visible: false; opacity:0;}
+                PropertyChanges { target: dashboard; visible: true; opacity:1;}
+                PropertyChanges { target: login; visible: false; opacity:0;}
+                PropertyChanges { target: spectrum; visible: false; opacity:0;}
             },
             State
             {
                 name: "ma-tracks";
                 when: menu_tracks.buttonSelected
-                PropertyChanges { target: profile; visible: false;}
-                PropertyChanges { target: dashboard; visible: false;}
-                PropertyChanges { target: login; visible: false;}
-                PropertyChanges { target: spectrum; visible: true;}
+                PropertyChanges { target: profile; visible: false; opacity:0;}
+                PropertyChanges { target: dashboard; visible: false; opacity:0;}
+                PropertyChanges { target: login; visible: false; opacity:0;}
+                PropertyChanges { target: spectrum; visible: true; opacity:1;}
             }
         ]
-//        transitions: [
-//            Transition {
-//                from: "*"; to: "ma-dashboard"; reversible: true
-//                RotationAnimation { duration: 300; direction: RotationAnimation.Counterclockwise }
-//            },
-//            Transition {
-//                from: "*"; to: "ma-profile"; reversible: true
-//                RotationAnimation { duration: 300; direction: RotationAnimation.Counterclockwise }
-//            },
-//            Transition {
-//                from: "*"; to: "ma-tracks"; reversible: true
-//                RotationAnimation { duration: 300; direction: RotationAnimation.Counterclockwise }
-//            },
-//            Transition {
-//                RotationAnimation { duration: 300; direction: RotationAnimation.Counterclockwise }
-//            }
-//        ]
+        transitions: [
+            Transition {
+                from: "*"; to: "ma-dashboard"; reversible: true
+                NumberAnimation { properties: "opacity"; duration: 300; easing.type: Easing.Linear }
+            },
+            Transition {
+                from: "*"; to: "ma-profile"; reversible: true
+                NumberAnimation { properties: "opacity"; duration: 300; easing.type: Easing.Linear }
+            },
+            Transition {
+                from: "*"; to: "ma-tracks"; reversible: true
+                NumberAnimation { properties: "opacity"; duration: 300; easing.type: Easing.Linear }
+            },
+            Transition {
+                NumberAnimation { properties: "opacity"; duration: 300; easing.type: Easing.Linear }
+            }
+        ]
     }
 }
