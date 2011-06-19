@@ -275,4 +275,7 @@ Rectangle {
 //        x:20
 //        y:110
 //    }
+    function onSetWaveForm(img) {
+        spectrum.spectrum.source = img;
+    }
 }

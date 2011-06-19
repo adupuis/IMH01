@@ -113,7 +113,7 @@ private:
 
     void startRequest( QString& _strUrl );
     User * parseUser( QByteArray response );
-    Track * parseTrack( QByteArray response );
+    void parseTrack( QByteArray response );
     int mReplyType;
 
     QNetworkRequest setSSLConfig( );

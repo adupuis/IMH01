@@ -717,16 +717,16 @@ void SoundCloudApi::slotHandleNetworkData( QNetworkReply* _Reply )
     {
         qDebug() << "Reply received";
 
-        switch( mReplyType )
-        {
-        case USER:
-            parseUser( _Reply->readAll() );
-            break;
+//        switch( mReplyType )
+//        {
+//        case USER:
+//            parseUser( _Reply->readAll() );
+//            break;
 
-        case TRACK:
+//        case TRACK:
             parseTrack( _Reply->readAll() );
-            break;
-        }
+  //          break;
+//        }
 
         /*
         const QUrl url = _Reply->request().url();
@@ -887,7 +887,7 @@ User * SoundCloudApi::parseUser( QByteArray response )
     emit ( sigUserRequestFinished( user ) );
 }
 
-Track * SoundCloudApi::parseTrack( QByteArray response )
+void SoundCloudApi::parseTrack( QByteArray response )
 {
     qDebug() << "Parsing reply ...";
 

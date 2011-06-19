@@ -27,6 +27,8 @@ MainWindow::MainWindow(QWidget *parent)
     //player.play();
     QObject::connect(m_pPlayerAudio, SIGNAL(positionChangedRel(QVariant)),
                      rootObject(), SLOT(onUpdateProgress(QVariant)));
+    QObject::connect(this, SIGNAL(setWaveForm(QVariant)),
+                     rootObject(), SLOT(onSetWaveForm(QVariant)));
     m_pSca = new SoundCloudApi();
     QObject::connect(m_pSca, SIGNAL(sigTrackRequestFinished(Track*)),
                      this, SLOT(playTrack(Track*)));
@@ -140,5 +142,5 @@ void MainWindow::playTrack(Track* track)
     qDebug() << "playTrack" << track->mStreamUrl;
     m_pPlayerAudio->addUrl(track->mStreamUrl);
     m_pPlayerAudio->play();
-    //track->mWaveformUrl;
+    emit setWaveForm(QVariant(track->mWaveformUrl));
 }

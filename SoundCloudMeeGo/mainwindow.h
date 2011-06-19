@@ -12,6 +12,7 @@
 
 #include <QtGui/QMainWindow>
 #include <QDeclarativeView>
+#include <QVariant>
 
 class PlayerAudio;
 class SoundCloudApi;
@@ -40,6 +41,9 @@ public:
 
     void setOrientation(ScreenOrientation orientation);
     void showExpanded();
+signals:
+    void setWaveForm(QVariant);
+
 private slots:
     void getTrackInfo(QString&);
     void playTrack(Track*);
