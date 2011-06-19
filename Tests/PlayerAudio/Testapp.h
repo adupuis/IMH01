@@ -3,7 +3,7 @@
 
 #include <QDebug>
 #include <QObject>
-#include "Playeraudio.h"
+#include "../../SoundCloudMeeGo/Playeraudio.h"
 
 class TestApp : public QObject
 {
