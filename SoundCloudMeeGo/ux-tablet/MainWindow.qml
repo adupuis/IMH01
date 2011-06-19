@@ -270,4 +270,9 @@ Rectangle {
         login.visible = false;
         spectrum.setVisibile();
     }
+
+//    Dashboard {
+//        x:20
+//        y:110
+//    }
 }

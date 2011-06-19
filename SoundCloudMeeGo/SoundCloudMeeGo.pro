@@ -28,8 +28,8 @@ SOURCES += main.cpp \
     app.cpp \
     label.cpp  \
     Oauth.cpp \
-    Browser.cpp \
-    Playeraudio.cpp
+    Browser.cpp
+#    Playeraudio.cpp
 
 
 HEADERS += mainwindow.h \
@@ -43,8 +43,8 @@ HEADERS += mainwindow.h \
     label.h \
     include/qjson/parser.h \
     Oauth.h \
-    Browser.h \
-    Playeraudio.h
+    Browser.h
+#    Playeraudio.h
 
 LIBS += -L../SoundCloudMeeGo/lib -lqjson
 
@@ -60,5 +60,6 @@ OTHER_FILES += \
     ux-tablet/WindowButton.qml \
     ux-tablet/MenuButton.qml \
     ux-tablet/LoginScreen.qml \
+    ux-tablet/Dashboard.qml \
     ux-tablet/Spectrum.qml
 
