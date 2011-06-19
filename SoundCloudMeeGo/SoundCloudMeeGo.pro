@@ -15,7 +15,7 @@ symbian:TARGET.CAPABILITY += NetworkServices
 # CONFIG += mobility
 # MOBILITY +=
 
-QT += network webkit gui
+QT += network webkit gui declarative
 
 SOURCES += main.cpp mainwindow.cpp \
     Oauth.cpp \
@@ -24,7 +24,7 @@ HEADERS += mainwindow.h \
     Oauth.h \
     Browser.h
 FORMS += mainwindow.ui
-QT += declarative
+#QT += declarative
 
 # Please do not modify the following two lines. Required for deployment.
 include(deployment.pri)
@@ -32,4 +32,5 @@ qtcAddDeployment()
 
 OTHER_FILES += \
     ux-tablet/MainWindow.qml \
-    ux-tablet/WindowButton.qml
+    ux-tablet/WindowButton.qml \
+    ux-tablet/LoginScreen.qml

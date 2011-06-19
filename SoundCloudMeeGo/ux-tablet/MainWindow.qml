@@ -47,4 +47,13 @@ Rectangle {
         width:1366
         height:768
     }
+
+    LoginScreen {
+        x:20
+        y:110
+
+        function login() {
+            window.login();
+        }
+    }
 }

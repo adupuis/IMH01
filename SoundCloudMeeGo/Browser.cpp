@@ -64,6 +64,21 @@ Browser::~Browser()
 //        }
 }
 
+QString Browser::getEmail()
+{
+    return m_strEmail;
+}
+
+void Browser::setEmail( const QString& _strEmail )
+{
+    m_strEmail = _strEmail;
+}
+
+void Browser::setPassword( const QString& _strPassword )
+{
+    m_strPassword = _strPassword;
+}
+
 QString Browser::getAccessToken()
 {
     return m_strAccessToken;
@@ -203,6 +218,72 @@ void Browser::slotHandleLoadFinished( bool _ok )
     QUrl currentUrl = m_webView->url();
     QString strCurrentUrl = currentUrl.toString();
     qDebug() << "Current URL:" << strCurrentUrl;
+
+
+
+
+    OV_MSG( "Will parse page just loaded..." );
+    if( !_ok )
+    {
+        qDebug() << "Error while loading page! (this might be normal)";
+    }
+    else
+    {
+        QWebFrame* mainFrame = m_webView->page()->mainFrame();
+
+        qDebug() << "Page loaded.";
+
+        // Parsing oauth or login page for processing login/authorization action
+        qDebug() << "Start parsing inputs.";
+        QWebElementCollection inputs = mainFrame->documentElement().findAll( "input" );
+        foreach( QWebElement input, inputs )
+        {
+            qDebug() << "id:" << input.attribute( "id" );
+            if( input.attribute( "id" ) == "email" )
+            {
+                qDebug() << "id:" << input.attribute( "id" ) << "- value:" << input.attribute( "value" );
+                input.setAttribute( "value", m_strEmail );
+            }
+            else if( input.attribute( "id" ) == "pass" )
+            {
+                qDebug() << "id:" << input.attribute( "id" ) << "- value:" << input.attribute( "value" );
+                input.setAttribute( "value", m_strPassword );
+            }
+//            else if( input.attribute( "type" ) == "submit" && input.attribute( "name" ) == "login" )
+//            {
+////                        OV_FLASHING_MSG( "id: %s - value: %s", input.attribute( "id" ).toUtf8().constData(),  input.attribute( "value" ).toUtf8().constData() );
+//                input.evaluateJavaScript( "this.click()" );
+//                if( m_bLoginAction )
+//                {
+//                    m_bJustLoggedIn = true;
+//                    m_bLoginDone = true;
+//                }
+//                if( m_bOAuthAction )
+//                {
+//                    m_bOAuthDone = true;
+//                }
+////                        break;  // TODO : test this!!!
+//            }
+//            else if( input.attribute( "type" ) == "submit" && input.attribute( "name" ) == "grant_clicked" )
+//            {
+////                        OV_FLASHING_MSG( "id: %s - value: %s", input.attribute( "id" ).toUtf8().constData(),  input.attribute( "value" ).toUtf8().constData() );
+//                input.evaluateJavaScript( "this.click()" );
+//            }
+        }
+        qDebug() << "Done parsing inputs.";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 
     m_bLoadFinished = false;
 }
