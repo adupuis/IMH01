@@ -14,6 +14,8 @@
 #include "user.h"
 #include "include/qjson/parser.h"
 
+#define CLIENT_ID   "ef7c3301f5a463034354f0bfa1ee0236"
+
 class SoundCloudApi : public QObject
 {
     Q_OBJECT

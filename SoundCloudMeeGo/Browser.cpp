@@ -129,7 +129,7 @@ void Browser::loadUrl( QString& _strUrl )
     QNetworkRequest networkRequest = setSSLConfig();
     networkRequest.setUrl( QUrl( _strUrl ) );
     m_webView->load( networkRequest );
-    m_webView->show();
+//    m_webView->show();
 }
 
 void Browser::slotHandleNetworkData()
@@ -251,39 +251,14 @@ void Browser::slotHandleLoadFinished( bool _ok )
             }
 
 
-//            else if( input.attribute( "type" ) == "submit" && input.attribute( "name" ) == "login" )
-//            {
-////                        OV_FLASHING_MSG( "id: %s - value: %s", input.attribute( "id" ).toUtf8().constData(),  input.attribute( "value" ).toUtf8().constData() );
-//                input.evaluateJavaScript( "this.click()" );
-//                if( m_bLoginAction )
-//                {
-//                    m_bJustLoggedIn = true;
-//                    m_bLoginDone = true;
-//                }
-//                if( m_bOAuthAction )
-//                {
-//                    m_bOAuthDone = true;
-//                }
-////                        break;  // TODO : test this!!!
-//            }
-//            else if( input.attribute( "type" ) == "submit" && input.attribute( "name" ) == "grant_clicked" )
-//            {
-////                        OV_FLASHING_MSG( "id: %s - value: %s", input.attribute( "id" ).toUtf8().constData(),  input.attribute( "value" ).toUtf8().constData() );
-//                input.evaluateJavaScript( "this.click()" );
-//            }
+            else if( input.attribute( "type" ) == "submit" && input.attribute( "name" ) == "commit" && input.attribute( "value" ) == "Connect" )
+            {
+                qDebug() << "id:" << input.attribute( "id" ) << "- value:" << input.attribute( "value" );
+                input.evaluateJavaScript( "this.click()" );
+            }
         }
         qDebug() << "Done parsing inputs.";
     }
-
-
-
-
-
-
-
-
-
-
 
 
 
