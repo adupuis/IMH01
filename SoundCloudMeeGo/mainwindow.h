@@ -50,7 +50,7 @@ signals:
 private slots:
     void getTrackInfo(QString&);
     void playTrack(Track* t);
-    void playTrack(); //fake
+    //void playTrack(); //fake
     void stopTrack();
 private:
     Ui::MainWindow *ui;

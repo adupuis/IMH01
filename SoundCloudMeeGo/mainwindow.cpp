@@ -140,12 +140,6 @@ void MainWindow::getTrackInfo(QString& _token)
     m_pSca->getTrack(4951129);
 }
 
-
-void MainWindow::playTrack()
-{
-    playTrack(0);
-}
-
 void MainWindow::stopTrack()
 {
     m_pPlayerAudio->pause();
@@ -153,6 +147,7 @@ void MainWindow::stopTrack()
 
 void MainWindow::playTrack(Track* track)
 {
+    qDebug() << "DO PLAY";
 #ifdef FAKE
     m_pPlayerAudio->addFile(QString("/home/meego/local.mp3"));
     m_pPlayerAudio->play();
@@ -172,10 +167,19 @@ void MainWindow::playerSeek(int mousex, int width)
 
 void MainWindow::startSpectrum()
 {
-    QTimer::singleShot(1100, this, SLOT(playTrack()));
+    qDebug() << "******PLAY";
+    //QTimer::singleShot(1100, this, SLOT(playTrack()));
+    //playTrack(0);
+
+    m_pPlayerAudio->addFile(QString("/home/meego/local.mp3"));
+    m_pPlayerAudio->play();
+    emit setWaveForm(QString("/home/meego/local.png"));
 }
 
 void MainWindow::stopSpectrum()
 {
-    QTimer::singleShot(1100, this, SLOT(stopTrack()));
+    qDebug() << "******STOP";
+    //QTimer::singleShot(1100, this, SLOT(stopTrack()));
+    //stopTrack();
+    m_pPlayerAudio->pause();
 }

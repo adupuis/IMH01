@@ -264,19 +264,23 @@ Rectangle {
             y: 90
             height: 200
             width:1200
+            function startSpectrum() {
+                console.log("******** mainwindow");
+                window.startSpectrum();
+            }
+            function stopSpectrum() {
+                window.stopSpectrum();
+            }
+            function playerSeek(param) {
+                window.playerSeek(param, spectrum.width);
+
+            }
         }
-        function onUpdateProgress(ratio) {
-            spectrum.onUpdateProgress(ratio);
-        }
+
+
         function spectrumVisible() {
             login.visible = false;
             spectrum.setVisibile();
-        }
-        function startSpectrum() {
-            window.startSpectrum();
-        }
-        function stopSpectrum() {
-            window.stopSpectrum();
         }
 
         Dashboard {
@@ -296,13 +300,8 @@ Rectangle {
             dashboard.visible = true;
         }
 
-        function onSetWaveForm(img) {
-            spectrum.spectrum.source = img;
-        }
-        function playerSeek(param) {
-            window.playerSeek(param, spectrum.width);
 
-        }
+
 
         states:[
             State
@@ -333,22 +332,30 @@ Rectangle {
                 PropertyChanges { target: spectrum; visible: true; opacity:1;}
             }
         ]
-        transitions: [
-            Transition {
-                from: "*"; to: "ma-dashboard"; reversible: true
-                NumberAnimation { properties: "opacity"; duration: 300; easing.type: Easing.Linear }
-            },
-            Transition {
-                from: "*"; to: "ma-profile"; reversible: true
-                NumberAnimation { properties: "opacity"; duration: 300; easing.type: Easing.Linear }
-            },
-            Transition {
-                from: "*"; to: "ma-tracks"; reversible: true
-                NumberAnimation { properties: "opacity"; duration: 300; easing.type: Easing.Linear }
-            },
-            Transition {
-                NumberAnimation { properties: "opacity"; duration: 300; easing.type: Easing.Linear }
-            }
-        ]
+//        transitions: [
+//            Transition {
+//                from: "*"; to: "ma-dashboard"; reversible: true
+//                NumberAnimation { properties: "opacity"; duration: 300; easing.type: Easing.Linear }
+//            },
+//            Transition {
+//                from: "*"; to: "ma-profile"; reversible: true
+//                NumberAnimation { properties: "opacity"; duration: 300; easing.type: Easing.Linear }
+//            },
+//            Transition {
+//                from: "*"; to: "ma-tracks"; reversible: true
+//                NumberAnimation { properties: "opacity"; duration: 300; easing.type: Easing.Linear }
+//            },
+//            Transition {
+//                NumberAnimation { properties: "opacity"; duration: 300; easing.type: Easing.Linear }
+//            }
+//        ]
     }
+    function onUpdateProgress(ratio) {
+        spectrum.onUpdateProgress(ratio);
+    }
+
+    function onSetWaveForm(img) {
+        spectrum.spectrum.source = img;
+    }
+
 }

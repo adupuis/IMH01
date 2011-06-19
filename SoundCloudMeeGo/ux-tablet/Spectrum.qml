@@ -12,27 +12,27 @@ Rectangle {
     Image {
         source:"working-files/SoundCloudMeegoUX_Tracks_images/start.png"
         id:start_button
-        x:862 ; y:100
-        width:400
-        height:163
+        x:400; y:300
+        width:100
+        height:100
         smooth: true
         MouseArea
         {
           anchors.fill: parent
-          id: mouseArea
-          onClicked: startSpectrum()
+          id: mouseArea3
+          onPressed: { console.log("click!!!!!!!!"); startSpectrum(); }
         }
         states:[
             State
             {
                 name: "hovered";
-                when: mouseArea.pressed;
+                when: mouseArea3.pressed;
                 PropertyChanges { target: start_button; opacity: 0.7;}
             },
             State
             {
                 name: "normal"
-                when: mouseArea.pressed == false;
+                when: mouseArea3.pressed == false;
                 PropertyChanges { target: start_button; opacity: 1; }
             }
         ]
@@ -40,27 +40,27 @@ Rectangle {
     Image {
         source:"working-files/SoundCloudMeegoUX_Tracks_images/stop.png"
         id:stop_button
-        x:862 ; y:100
-        width:400
-        height:163
+        x:600 ; y:300
+        width:100
+        height:100
         smooth: true
         MouseArea
         {
           anchors.fill: parent
-          id: mouseArea
+          id: mouseArea2
           onClicked: stopSpectrum()
         }
         states:[
             State
             {
                 name: "hovered";
-                when: mouseArea.pressed;
+                when: mouseArea2.pressed;
                 PropertyChanges { target: stop_button; opacity: 0.7;}
             },
             State
             {
                 name: "normal"
-                when: mouseArea.pressed == false;
+                when: mouseArea2.pressed == false;
                 PropertyChanges { target: stop_button; opacity: 1; }
             }
         ]
