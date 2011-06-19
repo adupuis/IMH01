@@ -106,6 +106,7 @@ private:
 
     void startRequest( QString& _strUrl );
     User * parseUser( QByteArray response );
+    Track * parseTrack( QByteArray response );
 
     QNetworkRequest setSSLConfig( );
 
@@ -139,7 +140,8 @@ private:
 
 signals:
 
-    void sigUsersRequestFinished( User * user );
+    void sigUserRequestFinished( User * user );
+    void sigTrackRequestFinished( Track * track );
 
 };
 

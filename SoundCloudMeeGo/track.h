@@ -16,7 +16,7 @@ public:
     QString mUri;
     QString mCreatedAt;
     QString mSharing;
-    QString mPurcaseUrl;
+    QString mPurchaseUrl;
     QString mArtworkUrl;
     QString mDescription;
     Label mLabel;

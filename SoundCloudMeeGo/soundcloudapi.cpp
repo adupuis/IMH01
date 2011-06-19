@@ -721,9 +721,13 @@ void SoundCloudApi::slotHandleNetworkData( QNetworkReply* _Reply )
 
 
         // ||
-        if( !type.compare( "me" ) )
+        if( !type.compare( "me" ) || !type.compare( "user" ) )
         {
             parseUser( _Reply->readAll() );
+        }
+        if( !type.compare( "track" ) )
+        {
+            parseTrack( _Reply->readAll() );
         }
     }
     else
@@ -861,5 +865,222 @@ User * SoundCloudApi::parseUser( QByteArray response )
         qDebug() << "plan: " << user->mPlan;
     }
 
-    emit ( sigUsersRequestFinished( user ) );
+    emit ( sigUserRequestFinished( user ) );
+}
+
+Track * SoundCloudApi::parseTrack( QByteArray response )
+{
+    qDebug() << "Parsing reply ...";
+
+    QVariant json = mParser->parse( response );
+    const QMap<QString, QVariant> map = json.toMap();
+    Track *track = new Track( );
+
+    if( map.contains( "id" ) )
+    {
+        track->mId = map.value( "id" ).toInt();
+        qDebug() << "id: " << track->mId;
+    }
+    if( map.contains( "uri" ) )
+    {
+        track->mUri = map.value( "uri" ).toString();
+        qDebug() << "uri: " << track->mUri;
+    }
+    if( map.contains( "permalink" ) )
+    {
+        track->mPermalink = map.value( "permalink" ).toString();
+        qDebug() << "permalink: " << track->mPermalink;
+    }
+    if( map.contains( "permalink_url" ) )
+    {
+        track->mPermalinkUrl = map.value( "permalink_url" ).toString();
+        qDebug() << "permalink_url: " << track->mPermalinkUrl;
+    }
+    if( map.contains( "title" ) )
+    {
+        track->mTitle = map.value( "title" ).toString();
+        qDebug() << "title: " << track->mTitle;
+    }
+    if( map.contains( "created_at" ) )
+    {
+        track->mCreatedAt = map.value( "created_at" ).toString();
+        qDebug() << "created_at: " << track->mCreatedAt;
+    }
+    if( map.contains( "sharing" ) )
+    {
+        track->mSharing = map.value( "sharing" ).toString();
+        qDebug() << "shairing: " << track->mSharing;
+    }
+    if( map.contains( "purchase_url" ) )
+    {
+        track->mPurchaseUrl = map.value( "purchase_url" ).toString();
+        qDebug() << "purchase_url: " << track->mPurchaseUrl;
+    }
+    if( map.contains( "artwork_url" ) )
+    {
+        track->mArtworkUrl = map.value( "artwork_url" ).toString();
+        qDebug() << "artwork_url: " << track->mArtworkUrl;
+    }
+    if( map.contains( "description" ) )
+    {
+        track->mDescription = map.value( "description" ).toString();
+        qDebug() << "description: " << track->mDescription;
+    }
+    if( map.contains( "label" ) )
+    {
+        //track->mLabel = map.value( "label" ).toMap();
+        //qDebug() << "label: " << track->mLabel;
+    }
+    if( map.contains( "duration" ) )
+    {
+        track->mDuration = map.value( "duration" ).toInt();
+        qDebug() << "duration: " << track->mDuration;
+    }
+    if( map.contains( "genre" ) )
+    {
+        track->mGenre = map.value( "genre" ).toString();
+        qDebug() << "genre: " << track->mGenre;
+    }
+    if( map.contains( "shared_to_count" ) )
+    {
+        track->mSharedToCount = map.value( "shared_to_count" ).toInt();
+        qDebug() << "shared_to_count: " << track->mSharedToCount;
+    }
+    if( map.contains( "tag_list" ) )
+    {
+        track->mTagList = map.value( "tag_list" ).toString();
+        qDebug() << "tag_list: " << track->mTagList;
+    }
+    if( map.contains( "label_id" ) )
+    {
+        track->mLabelId = map.value( "label_id" ).toInt();
+        qDebug() << "label_id: " << track->mLabelId;
+    }
+    if( map.contains( "label_name" ) )
+    {
+        track->mLabelName = map.value( "label_name" ).toString();
+        qDebug() << "label_name: " << track->mLabelName;
+    }
+    if( map.contains( "license" ) )
+    {
+        track->mLicense = map.value( "licence" ).toString();
+        qDebug() << "license: " << track->mLicense;
+    }
+    if( map.contains( "release" ) )
+    {
+        track->mRelease = map.value( "release" ).toInt();
+        qDebug() << "release: " << track->mRelease;
+    }
+    if( map.contains( "release_day" ) )
+    {
+        track->mReleaseDay = map.value( "release_day" ).toInt();
+        qDebug() << "release_day: " << track->mReleaseDay;
+    }
+    if( map.contains( "release_month" ) )
+    {
+        track->mReleaseMonth = map.value( "release_month" ).toInt();
+        qDebug() << "release_month: " << track->mReleaseMonth;
+    }
+    if( map.contains( "release_year" ) )
+    {
+        track->mReleaseYear = map.value( "release_year" ).toInt();
+        qDebug() << "release_year: " << track->mReleaseYear;
+    }
+    if( map.contains( "state" ) )
+    {
+        track->mState = map.value( "state" ).toString();
+        qDebug() << "state: " << track->mState;
+    }
+    if( map.contains( "streamable" ) )
+    {
+        track->mStreamable = map.value( "streamable" ).toBool();
+        qDebug() << "streamable: " << track->mStreamable;
+    }
+    if( map.contains( "track_type" ) )
+    {
+        track->mTrackType = map.value( "track_type" ).toString();
+        qDebug() << "track_type: " << track->mTrackType;
+    }
+    if( map.contains( "waveform_url" ) )
+    {
+        track->mWaveformUrl = map.value( "waveform_url" ).toString();
+        qDebug() << "release_year: " << track->mWaveformUrl;
+    }
+    if( map.contains( "download_url" ) )
+    {
+        track->mDownloadUrl = map.value( "download_url" ).toString();
+        qDebug() << "download_url: " << track->mDownloadUrl;
+    }
+    if( map.contains( "stream_url" ) )
+    {
+        track->mStreamUrl = map.value( "stream_url" ).toString();
+        qDebug() << "stream_url: " << track->mStreamUrl;
+    }
+    if( map.contains( "bpm" ) )
+    {
+        track->mBpm = map.value( "bpm" ).toInt();
+        qDebug() << "bpm: " << track->mBpm;
+    }
+    if( map.contains( "commentable" ) )
+    {
+        track->mCommentable = map.value( "commentable" ).toBool();
+        qDebug() << "commentable: " << track->mCommentable;
+    }
+    if( map.contains( "downloadable" ) )
+    {
+        track->mDownloadable = map.value( "downloadable" ).toBool();
+        qDebug() << "downloadable: " << track->mDownloadable;
+    }
+    if( map.contains( "isrc" ) )
+    {
+        track->mIsrc = map.value( "isrc" ).toString();
+        qDebug() << "isrc: " << track->mIsrc;
+    }
+    if( map.contains( "key_signature" ) )
+    {
+        track->mKeySignature = map.value( "key_signature" ).toString();
+        qDebug() << "key_signature: " << track->mKeySignature;
+    }
+    if( map.contains( "comment_count" ) )
+    {
+        track->mCommentCount = map.value( "comment_count" ).toInt();
+        qDebug() << "comment_count: " << track->mCommentCount;
+    }
+    if( map.contains( "download_count" ) )
+    {
+        track->mDownloadCount = map.value( "download_count" ).toInt();
+        qDebug() << "download_count: " << track->mDownloadCount;
+    }
+    if( map.contains( "playback_count" ) )
+    {
+        track->mPlaybackCount = map.value( "playback_count" ).toInt();
+        qDebug() << "playback_count: " << track->mPlaybackCount;
+    }
+    if( map.contains( "favoritings_count" ) )
+    {
+        track->mFavoritingsCount = map.value( "favoritings_count" ).toInt();
+        qDebug() << "favoritings_count: " << track->mFavoritingsCount;
+    }
+    if( map.contains( "original_format" ) )
+    {
+        track->mOriginalFormat = map.value( "original_format" ).toString();
+        qDebug() << "original_format: " << track->mOriginalFormat;
+    }
+    if( map.contains( "created_with" ) )
+    {
+        //track->mCreatedWith = map.value( "created_with" ).toMap();
+        //qDebug() << "created_with: " << track->mCreatedWith;
+    }
+    if( map.contains( "asset_data" ) )
+    {
+        track->mAssetData = map.value( "asset_data" ).toInt();
+        qDebug() << "asset_data: " << track->mAssetData;
+    }
+    if( map.contains( "artwork_data" ) )
+    {
+        track->mArtworkData = map.value( "artwork_data" ).toString();
+        qDebug() << "artwork_data: " << track->mArtworkData;
+    }
+
+    emit ( sigTrackRequestFinished( track ) );
 }
