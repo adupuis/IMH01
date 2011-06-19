@@ -39,6 +39,7 @@ void MainWindow::Init()
 
 void MainWindow::quit()
 {
+    qDebug("Mainwindow::quit() called");
     QApplication::quit();
 }
 
