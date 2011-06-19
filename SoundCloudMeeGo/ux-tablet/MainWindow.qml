@@ -241,7 +241,7 @@ Rectangle {
                 NumberAnimation { properties: "x"; duration: 200; easing.type: Easing.Linear }
             },
             Transition {
-                NumberAnimation { properties: "x"; duration: 200 }
+                NumberAnimation { properties: "x"; duration: 200; easing.type: Easing.Linear }
             }
         ]
     }
@@ -270,4 +270,9 @@ Rectangle {
         login.visible = false;
         spectrum.setVisibile();
     }
+
+//    Dashboard {
+//        x:20
+//        y:110
+//    }
 }
