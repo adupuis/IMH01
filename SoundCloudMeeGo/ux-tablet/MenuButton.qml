@@ -1,6 +1,8 @@
 import QtQuick 1.0
 
 BorderImage {
+    property alias buttonPressed: mouseArea.pressed
+    property bool buttonSelected : false
     id: borderImage
     source: "images/base-button.png"
     border { left: 15; top: 15; right: 15; bottom: 15 }

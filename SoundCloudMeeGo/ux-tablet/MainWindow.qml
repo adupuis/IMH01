@@ -75,16 +75,21 @@ Rectangle {
             id: menu_dashboard
             width: 120
             height: 70
+            buttonSelected: true
             Text {
                 anchors.fill: parent
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 text:  "Dashboard"
-                font.family: "Liberation Sans Narrow"
                 font.pointSize: 13
             }
             function callback(){
                 console.log("Menu button clicked: Dashboard")
+                menu_dashboard.buttonSelected = true
+                menu_groups.buttonSelected = false
+                menu_people.buttonSelected = false
+                menu_you.buttonSelected = false
+                menu_tracks.buttonSelected = false
             }
         }
         MenuButton {
@@ -100,6 +105,11 @@ Rectangle {
             }
             function callback(){
                 console.log("Menu button clicked: You")
+                menu_dashboard.buttonSelected = false
+                menu_groups.buttonSelected = false
+                menu_people.buttonSelected = false
+                menu_you.buttonSelected = true
+                menu_tracks.buttonSelected = false
             }
         }
         MenuButton {
@@ -115,6 +125,11 @@ Rectangle {
             }
             function callback(){
                 console.log("Menu button clicked: Tracks")
+                menu_dashboard.buttonSelected = false
+                menu_groups.buttonSelected = false
+                menu_people.buttonSelected = false
+                menu_you.buttonSelected = false
+                menu_tracks.buttonSelected = true
             }
         }
         MenuButton {
@@ -130,6 +145,11 @@ Rectangle {
             }
             function callback(){
                 console.log("Menu button clicked: People")
+                menu_dashboard.buttonSelected = false
+                menu_groups.buttonSelected = false
+                menu_people.buttonSelected = true
+                menu_you.buttonSelected = false
+                menu_tracks.buttonSelected = false
             }
         }
         MenuButton {
@@ -145,6 +165,11 @@ Rectangle {
             }
             function callback(){
                 console.log("Menu button clicked: Groups")
+                menu_dashboard.buttonSelected = false
+                menu_groups.buttonSelected = true
+                menu_people.buttonSelected = false
+                menu_you.buttonSelected = false
+                menu_tracks.buttonSelected = false
             }
         }
     }
@@ -156,10 +181,68 @@ Rectangle {
         width:1366
         height:768
     }
-    Image {
-        id: indicator
-        x: 210
-        y: 82
-        source: "images/indicator.png"
+    Rectangle {
+        x:160
+        y: 80
+        width: 1356-160
+        Image {
+            id: indicator
+            x: 50
+            y: 2
+            source: "images/indicator.png"
+        }
+        states:[
+            State
+            {
+                name: "indicator-dashboard";
+                when: menu_dashboard.buttonSelected
+                PropertyChanges { target: indicator; x: 50;}
+            },
+            State
+            {
+                name: "indicator-you"
+                when: menu_you.buttonSelected ;
+                PropertyChanges { target: indicator; x: 170; }
+            },
+            State
+            {
+                name: "indicator-tracks"
+                when: menu_tracks.buttonSelected ;
+                PropertyChanges { target: indicator; x: 290; }
+            },
+            State
+            {
+                name: "indicator-people"
+                when: menu_people.buttonSelected ;
+                PropertyChanges { target: indicator; x: 410; }
+            },
+            State
+            {
+                name: "indicator-groups"
+                when: menu_groups.buttonSelected ;
+                PropertyChanges { target: indicator; x: 530; }
+            }
+        ]
+        transitions: [
+            Transition {
+                from: "*"; to: "indicator-you"; reversible: true
+                NumberAnimation { properties: "x"; duration: 200; easing.type: Easing.Linear }
+            },
+            Transition {
+                from: "*"; to: "indicator-tracks"; reversible: true
+                NumberAnimation { properties: "x"; duration: 200; easing.type: Easing.Linear }
+            },
+            Transition {
+                from: "*"; to: "indicator-groups"; reversible: true
+                NumberAnimation { properties: "x"; duration: 200; easing.type: Easing.Linear }
+            },
+            Transition {
+                from: "*"; to: "indicator-people"; reversible: true
+                NumberAnimation { properties: "x"; duration: 200; easing.type: Easing.Linear }
+            },
+            Transition {
+                NumberAnimation { properties: "x"; duration: 200 }
+            }
+        ]
     }
 }
