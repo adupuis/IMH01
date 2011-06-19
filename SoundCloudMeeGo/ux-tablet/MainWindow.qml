@@ -273,10 +273,19 @@ Rectangle {
             spectrum.setVisibile();
         }
 
-        //    Dashboard {
-        //        x:20
-        //        y:110
-        //    }
+        Dashboard {
+            id: dashboard
+            x:0
+            y:0
+            visible: false
+        }
+        Profile {
+            id: profile
+            x: 0
+            y: 0
+            visible: false
+        }
+
         function onSetWaveForm(img) {
             spectrum.spectrum.source = img;
         }
@@ -284,5 +293,53 @@ Rectangle {
             window.playerSeek(param, spectrum.width);
 
         }
+
+        states:[
+            State
+            {
+                name: "ma-profile";
+                when: menu_you.buttonSelected
+                PropertyChanges { target: profile; visible: true;}
+                PropertyChanges { target: dashboard; visible: false;}
+                PropertyChanges { target: login; visible: false;}
+                PropertyChanges { target: spectrum; visible: false;}
+            },
+            State
+            {
+                name: "ma-dashboard";
+                when: menu_dashboard.buttonSelected
+//                PropertyChanges { target: dashboard; rotation: 360 }
+                PropertyChanges { target: profile; visible: false;}
+                PropertyChanges { target: dashboard; visible: true;}
+                PropertyChanges { target: login; visible: false;}
+                PropertyChanges { target: spectrum; visible: false;}
+            },
+            State
+            {
+                name: "ma-tracks";
+                when: menu_tracks.buttonSelected
+                PropertyChanges { target: profile; visible: false;}
+                PropertyChanges { target: dashboard; visible: false;}
+                PropertyChanges { target: login; visible: false;}
+                PropertyChanges { target: spectrum; visible: true;}
+            }
+        ]
+//        transitions: [
+//            Transition {
+//                from: "*"; to: "ma-dashboard"; reversible: true
+//                RotationAnimation { duration: 300; direction: RotationAnimation.Counterclockwise }
+//            },
+//            Transition {
+//                from: "*"; to: "ma-profile"; reversible: true
+//                RotationAnimation { duration: 300; direction: RotationAnimation.Counterclockwise }
+//            },
+//            Transition {
+//                from: "*"; to: "ma-tracks"; reversible: true
+//                RotationAnimation { duration: 300; direction: RotationAnimation.Counterclockwise }
+//            },
+//            Transition {
+//                RotationAnimation { duration: 300; direction: RotationAnimation.Counterclockwise }
+//            }
+//        ]
     }
 }
