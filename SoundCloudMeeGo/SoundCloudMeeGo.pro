@@ -26,4 +26,5 @@ qtcAddDeployment()
 
 OTHER_FILES += \
     ux-tablet/MainWindow.qml \
-    ux-tablet/WindowButton.qml
+    ux-tablet/WindowButton.qml \
+    ux-tablet/MenuButton.qml
