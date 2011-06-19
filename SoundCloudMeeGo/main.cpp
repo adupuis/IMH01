@@ -2,7 +2,7 @@
 
 #include <QtGui/QApplication>
 
-//#include <Oauth.h>
+#include "Playeraudio.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,6 +12,14 @@ int main(int argc, char *argv[])
     mainWindow.setOrientation(MainWindow::ScreenOrientationAuto);
 //    mainWindow.showFullScreen();
     mainWindow.showExpanded();
+
+    PlayerAudio player;
+
+    player.addUrl("http://api.soundcloud.com/tracks/4951129/stream?client_id=ef7c3301f5a463034354f0bfa1ee0236");
+
+    QObject::connect(&player, SIGNAL(positionChangedRel(QVariant)),
+                     mainWindow.rootObject(), SLOT(onUpdateProgress(QVariant)));
+    player.play();
 
     return app.exec();
 }

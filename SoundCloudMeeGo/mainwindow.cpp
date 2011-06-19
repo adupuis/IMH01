@@ -28,16 +28,16 @@ MainWindow::~MainWindow()
 void MainWindow::Init()
 {
      QString contentPath;
-#ifdef QT_DEBUG
-     contentPath = "/home/qdesert/HACKAT/IMH01/SoundCloudMeeGo";
-#else
+//#ifdef QT_DEBUG
+//     contentPath = "/home/arnaud/Code/IMH01/SoundCloudMeeGo";
+//#else
      contentPath = QApplication::applicationDirPath();
-#endif
+//#endif
      setFocusPolicy(Qt::StrongFocus);
      setResizeMode(QDeclarativeView::SizeRootObjectToView);
      setSource(QUrl::fromLocalFile(contentPath + "/ux-tablet/MainWindow.qml"));
      rootContext()->setContextProperty("window", this);
-}
+   }
 
 void MainWindow::quit()
 {

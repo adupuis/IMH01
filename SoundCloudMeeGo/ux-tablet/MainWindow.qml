@@ -156,6 +156,7 @@ Rectangle {
         width:1366
         height:768
     }
+
     Image {
         id: indicator
         x: 210
@@ -170,5 +171,14 @@ Rectangle {
         function login(login,password) {
             window.login(login,password);
         }
+    Spectrum {
+        id: spectrum
+        x: 60
+        y: 200
+        height: 200
+        width:1200
+    }
+    function onUpdateProgress(ratio) {
+        spectrum.onUpdateProgress(ratio);
     }
 }

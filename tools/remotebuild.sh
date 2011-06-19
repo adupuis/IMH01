@@ -4,6 +4,7 @@ REMOTE_HOST="192.168.83.128"
 PROJECT_PATH=~/IMH01
 SUBPROJECT_PATH=SoundCloudMeeGo
 BIN=SoundCloudMeeGo
+RESOURCES=ux-tablet
 
 usage()
 {
@@ -30,7 +31,7 @@ compile()
 
 deploy()
 {
-	scp $SUBPROJECT_PATH/$BIN meego@$TABLETTE:
+	rsync --update -r $SUBPROJECT_PATH/{$BIN,$RESOURCES} meego@$TABLETTE:
 }
 
 clear()
