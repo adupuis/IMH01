@@ -3,7 +3,7 @@
 SoundCloudApi::SoundCloudApi( )
     : urlRoot ( "https://api.soundcloud.com" )
     , urlUsers ( "/users" )
-    , urlTracks ( "/track" )
+    , urlTracks ( "/tracks" )
     , urlPlaylists( "/playlists" )
     , urlFollowings ( "/followings" )
     , urlFollowers ( "/followers" )
@@ -253,9 +253,9 @@ void SoundCloudApi::getTracks( )
 void SoundCloudApi::getTrack( int track_id )
 {
     QString url = urlRoot;
-    url.append( urlUsers );
+    url.append( urlTracks );
     url.append( "/" );
-    url.append( track_id );
+    url.append( QString::number(track_id) );
 
 
     startRequest( url );
@@ -679,7 +679,7 @@ void SoundCloudApi::startRequest( QString& _strUrl )
     _strUrl.append( ".json?oauth_token=" );
     _strUrl.append( mOAuthToken );
 
-    qDebug() << _strUrl;
+    qDebug() << "Api request: " << _strUrl;
 
     networkRequest.setUrl( QUrl( _strUrl ) );
 
@@ -1014,6 +1014,7 @@ Track * SoundCloudApi::parseTrack( QByteArray response )
     if( map.contains( "stream_url" ) )
     {
         track->mStreamUrl = map.value( "stream_url" ).toString();
+        track->mStreamUrl.append("?client_id="CLIENT_ID);
         qDebug() << "stream_url: " << track->mStreamUrl;
     }
     if( map.contains( "bpm" ) )

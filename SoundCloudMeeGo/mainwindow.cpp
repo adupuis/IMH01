@@ -27,6 +27,9 @@ MainWindow::MainWindow(QWidget *parent)
     //player.play();
     QObject::connect(m_pPlayerAudio, SIGNAL(positionChangedRel(QVariant)),
                      rootObject(), SLOT(onUpdateProgress(QVariant)));
+    m_pSca = new SoundCloudApi();
+    QObject::connect(m_pSca, SIGNAL(sigTrackRequestFinished(Track*)),
+                     this, SLOT(playTrack(Track*)));
 
 }
 
@@ -67,7 +70,7 @@ void MainWindow::login(QString strLogin, QString strPassword)
                 rootObject(), SLOT(spectrumVisible()));
     Q_ASSERT(ret);
     connect(oauth, SIGNAL(sigAccessTokenAvailable(QString&)),
-            this, SLOT(playTrack()));
+            this, SLOT(getTrackInfo(QString&)));
 }
 
 void MainWindow::setOrientation(ScreenOrientation orientation)
@@ -125,7 +128,17 @@ void MainWindow::showExpanded()
 }
 
 
-void MainWindow::playTrack()
+void MainWindow::getTrackInfo(QString& _token)
 {
+    qDebug() << "getTrackInfo" << _token;
+    m_pSca->setOAuthToken(_token);
+    m_pSca->getTrack(4951129);
+}
 
+void MainWindow::playTrack(Track* track)
+{
+    qDebug() << "playTrack" << track->mStreamUrl;
+    m_pPlayerAudio->addUrl(track->mStreamUrl);
+    m_pPlayerAudio->play();
+    //track->mWaveformUrl;
 }

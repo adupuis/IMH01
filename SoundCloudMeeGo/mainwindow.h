@@ -14,6 +14,8 @@
 #include <QDeclarativeView>
 
 class PlayerAudio;
+class SoundCloudApi;
+class Track;
 
 namespace Ui {
     class MainWindow;
@@ -39,10 +41,12 @@ public:
     void setOrientation(ScreenOrientation orientation);
     void showExpanded();
 private slots:
-    void playTrack();
+    void getTrackInfo(QString&);
+    void playTrack(Track*);
 private:
     Ui::MainWindow *ui;
     PlayerAudio*     m_pPlayerAudio;
+    SoundCloudApi*   m_pSca;
 };
 
 #endif // MAINWINDOW_H
