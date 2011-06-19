@@ -60,5 +60,5 @@ OTHER_FILES += \
     ux-tablet/WindowButton.qml \
     ux-tablet/MenuButton.qml \
     ux-tablet/LoginScreen.qml \
-    ux-tablet/Spectrum.qml
-
+    ux-tablet/Spectrum.qml \
+    ux-tablet/Profile.qml
