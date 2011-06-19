@@ -2,7 +2,7 @@
 
 #include <QtGui/QApplication>
 
-#include <Oauth.h>
+//#include <Oauth.h>
 
 int main(int argc, char *argv[])
 {
@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 //    mainWindow.showFullScreen();
     mainWindow.showExpanded();
 
-    Oauth* oauth = new Oauth;
+//    Oauth* oauth = new Oauth;
 
     return app.exec();
 }

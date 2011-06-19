@@ -15,11 +15,11 @@ public:
 
     ~Browser();
 
-//    QString             getEmail();
+    QString             getEmail();
 
-//    void                setEmail( const QString& _strEmail );
+    void                setEmail( const QString& _strEmail );
 
-//    void                setPassword( const QString& _strPassword );
+    void                setPassword( const QString& _strPassword );
 
     QString             getAccessToken();
 

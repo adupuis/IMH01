@@ -17,7 +17,7 @@ public:
 
 signals:
 
-    sigAccessTokenAvailable( QString& );
+    void sigAccessTokenAvailable( QString& );
 
 
 private slots:
