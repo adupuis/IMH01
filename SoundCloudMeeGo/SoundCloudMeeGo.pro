@@ -17,14 +17,36 @@ MOBILITY += multimedia
 
 QT += network webkit gui
 
-SOURCES += main.cpp mainwindow.cpp \
+SOURCES += main.cpp \
+    mainwindow.cpp \
+    user.cpp \
+    track.cpp \
+    playlist.cpp \
+    group.cpp \
+    comment.cpp \
+    soundcloudapi.cpp \
+    app.cpp \
+    label.cpp  \
     Oauth.cpp \
     Browser.cpp \
     Playeraudio.cpp
+
+
 HEADERS += mainwindow.h \
+    user.h \
+    track.h \
+    playlist.h \
+    group.h \
+    comment.h \
+    soundcloudapi.h \
+    app.h \
+    label.h \
+    include/qjson/parser.h \
     Oauth.h \
     Browser.h \
     Playeraudio.h
+
+LIBS += -L../SoundCloudMeeGo/lib -lqjson
 
 FORMS += mainwindow.ui
 QT += declarative
