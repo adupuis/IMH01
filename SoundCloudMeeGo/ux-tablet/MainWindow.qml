@@ -23,38 +23,136 @@ Rectangle {
           id: mouseArea
           onClicked: console.log("Home button clicked")
         }
+        states:[
+            State
+            {
+                name: "hovered";
+                when: mouseArea.pressed;
+                PropertyChanges { target: home_button; opacity: 0.7;}
+            },
+            State
+            {
+                name: "normal"
+                when: mouseArea.pressed == false;
+                PropertyChanges { target: home_button; opacity: 1; }
+            }
+        ]
     }
-    WindowButton {
+    Rectangle {
         id: quit_button
-        x: 200
+        x: 1292
         y:20
-        Text {
-            anchors.fill: parent
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            text:  "Quit"
-        }
-
-        function callback(){
-            window.quit();
+        width: 64
+        height: 64
+        Image {
+            source: "images/application-exit.png"
+            states:[
+                State
+                {
+                    name: "hovered";
+                    when: quitMouseArea.pressed;
+                    PropertyChanges { target: quit_button; opacity: 1;}
+                },
+                State
+                {
+                    name: "normal"
+                    when: quitMouseArea.pressed == false;
+                    PropertyChanges { target: quit_button; opacity: 0.7; }
+                }
+            ]
+            MouseArea
+            {
+                id: quitMouseArea
+                anchors.fill: parent
+                onClicked: window.quit()
+            }
         }
     }
-    WindowButton {
-        id: quit_button2
-        x: 300
-        y:20
-        width: 200
-        height: 60
-        Text {
-            anchors.fill: parent
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            text:  "Quit 2"
+    Row {
+        x: 160
+        y: 10
+        MenuButton {
+            id: menu_dashboard
+            width: 120
+            height: 70
+            Text {
+                anchors.fill: parent
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                text:  "Dashboard"
+                font.family: "Liberation Sans Narrow"
+                font.pointSize: 13
+            }
+            function callback(){
+                console.log("Menu button clicked: Dashboard")
+            }
         }
-
-        function callback(){
-            window.quit();
+        MenuButton {
+            id: menu_you
+            width: 120
+            height: 70
+            Text {
+                anchors.fill: parent
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                text:  "You"
+                font.pointSize: 13
+            }
+            function callback(){
+                console.log("Menu button clicked: You")
+            }
         }
+        MenuButton {
+            id: menu_tracks
+            width: 120
+            height: 70
+            Text {
+                anchors.fill: parent
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                text:  "Tracks"
+                font.pointSize: 13
+            }
+            function callback(){
+                console.log("Menu button clicked: Tracks")
+            }
+        }
+        MenuButton {
+            id: menu_people
+            width: 120
+            height: 70
+            Text {
+                anchors.fill: parent
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                text:  "People"
+                font.pointSize: 13
+            }
+            function callback(){
+                console.log("Menu button clicked: People")
+            }
+        }
+        MenuButton {
+            id: menu_groups
+            width: 120
+            height: 70
+            Text {
+                anchors.fill: parent
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                text:  "Groups"
+                font.pointSize: 13
+            }
+            function callback(){
+                console.log("Menu button clicked: Groups")
+            }
+        }
+    }
+    Image {
+        id: indicator
+        x: 180
+        y: 90
+        source: "images/indicator.png"
     }
 
     Image {
