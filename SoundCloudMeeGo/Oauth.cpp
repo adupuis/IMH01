@@ -12,8 +12,8 @@ Oauth::Oauth()
 
     m_browser = new Browser;
 
-    connect( m_browser, SIGNAL( sigAccessTokenRetrieved( QString& ) ),
-             this,      SLOT(   slotAccessTokenRetrieved( QString& ) ) );
+    connect( m_browser, SIGNAL( sigAccessTokenRetrieved( const QString& ) ),
+             this,      SLOT(   slotAccessTokenRetrieved( const QString& ) ) );
 }
 
 Oauth::~Oauth()
@@ -43,7 +43,7 @@ void Oauth::start()
     m_browser->processSoundCloudOAuthPage();
 }
 
-void Oauth::slotAccessTokenRetrieved( QString& _strAccessToken )
+void Oauth::slotAccessTokenRetrieved( const QString& _strAccessToken )
 {
     qDebug() << "access token retrieved:" << _strAccessToken;
     emit sigAccessTokenAvailable( m_strAccessToken );

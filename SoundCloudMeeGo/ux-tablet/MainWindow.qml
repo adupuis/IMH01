@@ -247,6 +247,7 @@ Rectangle {
     }
 
     LoginScreen {
+        id: login
         x:20
         y:110
 
@@ -264,5 +265,9 @@ Rectangle {
     }
     function onUpdateProgress(ratio) {
         spectrum.onUpdateProgress(ratio);
+    }
+    function spectrumVisible() {
+        login.visible = false;
+        spectrum.setVisibile();
     }
 }

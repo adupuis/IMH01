@@ -1,6 +1,7 @@
 import QtQuick 1.0
 
 Rectangle {
+    visible: false;
     Rectangle {
         id: played
         color: "#FF0000"
@@ -27,5 +28,9 @@ Rectangle {
         played.width = played.parent.width * ratio;
         notplayed.width = notplayed.parent.width * (1.0 - ratio);
         notplayed.x = notplayed.parent.width * ratio;
+    }
+
+    function setVisibile() {
+        visible = true;
     }
 }
