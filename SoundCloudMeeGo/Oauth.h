@@ -12,10 +12,12 @@ public:
     Oauth();
     ~Oauth();
 
-//    void setLogin( QString& _strLogin );
-//    void setPassword( QString& _strLogin );
-
     QString getAccessToken();
+
+
+signals:
+
+    sigAccessTokenAvailable( QString& );
 
 
 private slots:
