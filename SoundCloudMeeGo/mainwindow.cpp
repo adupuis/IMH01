@@ -146,6 +146,11 @@ void MainWindow::playTrack()
     playTrack(0);
 }
 
+void MainWindow::stopTrack()
+{
+    m_pPlayerAudio->pause();
+}
+
 void MainWindow::playTrack(Track* track)
 {
 #ifdef FAKE
@@ -163,4 +168,14 @@ void MainWindow::playTrack(Track* track)
 void MainWindow::playerSeek(int mousex, int width)
 {
     m_pPlayerAudio->setPositionRelative( (float)mousex / (float)width );
+}
+
+void MainWindow::startSpectrum()
+{
+    QTimer::singleShot(1100, this, SLOT(playTrack()));
+}
+
+void MainWindow::stopSpectrum()
+{
+    QTimer::singleShot(1100, this, SLOT(stopTrack()));
 }

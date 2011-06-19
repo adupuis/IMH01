@@ -39,6 +39,8 @@ public:
     Q_INVOKABLE void quit();
     Q_INVOKABLE void login(QString strLogin, QString strPassword);
     Q_INVOKABLE void playerSeek(int mousex, int width);
+    Q_INVOKABLE void startSpectrum();
+    Q_INVOKABLE void stopSpectrum();
 
     void setOrientation(ScreenOrientation orientation);
     void showExpanded();
@@ -49,6 +51,7 @@ private slots:
     void getTrackInfo(QString&);
     void playTrack(Track* t);
     void playTrack(); //fake
+    void stopTrack();
 private:
     Ui::MainWindow *ui;
     PlayerAudio*     m_pPlayerAudio;

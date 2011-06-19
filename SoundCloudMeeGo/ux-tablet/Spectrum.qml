@@ -9,6 +9,63 @@ Rectangle {
         onPressed: { playerSeek(mouse.x) }
     }
 
+    Image {
+        source:"working-files/SoundCloudMeegoUX_Tracks_images/start.png"
+        id:start_button
+        x:862 ; y:100
+        width:400
+        height:163
+        smooth: true
+        MouseArea
+        {
+          anchors.fill: parent
+          id: mouseArea
+          onClicked: startSpectrum()
+        }
+        states:[
+            State
+            {
+                name: "hovered";
+                when: mouseArea.pressed;
+                PropertyChanges { target: start_button; opacity: 0.7;}
+            },
+            State
+            {
+                name: "normal"
+                when: mouseArea.pressed == false;
+                PropertyChanges { target: start_button; opacity: 1; }
+            }
+        ]
+    }
+    Image {
+        source:"working-files/SoundCloudMeegoUX_Tracks_images/stop.png"
+        id:stop_button
+        x:862 ; y:100
+        width:400
+        height:163
+        smooth: true
+        MouseArea
+        {
+          anchors.fill: parent
+          id: mouseArea
+          onClicked: stopSpectrum()
+        }
+        states:[
+            State
+            {
+                name: "hovered";
+                when: mouseArea.pressed;
+                PropertyChanges { target: stop_button; opacity: 0.7;}
+            },
+            State
+            {
+                name: "normal"
+                when: mouseArea.pressed == false;
+                PropertyChanges { target: stop_button; opacity: 1; }
+            }
+        ]
+    }
+
     Rectangle {
         id: played
         color: "#FF0000"
