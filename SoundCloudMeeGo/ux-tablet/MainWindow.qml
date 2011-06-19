@@ -249,15 +249,15 @@ Rectangle {
         id: mainarea
         x: 20
         y: 110
-        LoginScreen {
-            id: login
-            x:0
-            y:0
+//        LoginScreen {
+//            id: login
+//            x:0
+//            y:0
 
-            function login(login,password) {
-                window.login(login,password);
-            }
-        }
+//            function login(login,password) {
+//                window.login(login,password);
+//            }
+//        }
         Spectrum {
             id: spectrum
             x: 40
