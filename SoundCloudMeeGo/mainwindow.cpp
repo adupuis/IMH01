@@ -44,11 +44,14 @@ void MainWindow::quit()
     QApplication::quit();
 }
 
-void MainWindow::login()
+void MainWindow::login(QString strLogin, QString strPassword)
 {
-//    QApplication::quit();
-    qDebug() << "LOGIN!!!!!!!!!!!!!!!!!!!!!!";
+    qDebug() << "login:" << strLogin;
+    qDebug() << "password:" << strPassword;
     Oauth* oauth = new Oauth;
+    oauth->setLogin( strLogin );
+    oauth->setPassword( strPassword );
+    oauth->start();
 }
 
 void MainWindow::setOrientation(ScreenOrientation orientation)

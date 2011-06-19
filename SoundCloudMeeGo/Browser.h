@@ -15,9 +15,9 @@ public:
 
     ~Browser();
 
-    QString             getEmail();
+    QString             getLogin();
 
-    void                setEmail( const QString& _strEmail );
+    void                setLogin( const QString& _strLogin );
 
     void                setPassword( const QString& _strPassword );
 
@@ -69,7 +69,7 @@ private:
 
     QNetworkReply*          m_networkReply;
 
-    QString                 m_strEmail;
+    QString                 m_strLogin;
 
     QString                 m_strPassword;
 

@@ -1,7 +1,7 @@
 #include <Browser.h>
 
 Browser::Browser()
-    : m_strEmail                ( "" )
+    : m_strLogin                ( "" )
     , m_strPassword             ( "" )
     , m_bLoadFinished           ( false )
     , m_iNbRedirections         ( 0 )
@@ -64,14 +64,14 @@ Browser::~Browser()
 //        }
 }
 
-QString Browser::getEmail()
+QString Browser::getLogin()
 {
-    return m_strEmail;
+    return m_strLogin;
 }
 
-void Browser::setEmail( const QString& _strEmail )
+void Browser::setLogin( const QString& _strLogin )
 {
-    m_strEmail = _strEmail;
+    m_strLogin = _strLogin;
 }
 
 void Browser::setPassword( const QString& _strPassword )
@@ -222,42 +222,33 @@ void Browser::slotHandleLoadFinished( bool _ok )
 
 
 
-//    OV_MSG( "Will parse page just loaded..." );
-//    if( !_ok )
-//    {
-//        qDebug() << "Error while loading page! (this might be normal)";
-//    }
-//    else
-//    {
-//        QWebFrame* mainFrame = m_webView->page()->mainFrame();
+    qDebug() << "Will parse page just loaded...";
+    if( !_ok )
+    {
+        qDebug() << "Error while loading page! (this might be normal)";
+    }
+    else
+    {
+        QWebFrame* mainFrame = m_webView->page()->mainFrame();
 
-//        qDebug() << "Page loaded.";
+        qDebug() << "Page loaded.";
 
-//        // Parsing oauth or login page for processing login/authorization action
-//        qDebug() << "Start parsing inputs.";
-//        QWebElementCollection inputs = mainFrame->documentElement().findAll( "input" );
-//        foreach( QWebElement input, inputs )
-//        {
-//            qDebug() << "id:" << input.attribute( "id" );
-//            if( input.attribute( "id" ) == "email" )
-//            {
-//                qDebug() << "id:" << input.attribute( "id" ) << "- value:" << input.attribute( "value" );
-//                input.setAttribute( "value", m_strEmail );
-//            }
-//            else if( input.attribute( "id" ) == "pass" )
-//            {
-//                qDebug() << "id:" << input.attribute( "id" ) << "- value:" << input.attribute( "value" );
-//                input.setAttribute( "value", m_strPassword );
-//            }
-
-
-
-
-
-
-
-
-
+        // Parsing oauth or login page for processing login/authorization action
+        qDebug() << "Start parsing inputs.";
+        QWebElementCollection inputs = mainFrame->documentElement().findAll( "input" );
+        foreach( QWebElement input, inputs )
+        {
+            qDebug() << "id:" << input.attribute( "id" );
+            if( input.attribute( "id" ) == "username" )
+            {
+                qDebug() << "id:" << input.attribute( "id" ) << "- value:" << input.attribute( "value" );
+                input.setAttribute( "value", m_strLogin );
+            }
+            else if( input.attribute( "id" ) == "password" )
+            {
+                qDebug() << "id:" << input.attribute( "id" ) << "- value:" << input.attribute( "value" );
+                input.setAttribute( "value", m_strPassword );
+            }
 
 
 //            else if( input.attribute( "type" ) == "submit" && input.attribute( "name" ) == "login" )
@@ -280,12 +271,9 @@ void Browser::slotHandleLoadFinished( bool _ok )
 ////                        OV_FLASHING_MSG( "id: %s - value: %s", input.attribute( "id" ).toUtf8().constData(),  input.attribute( "value" ).toUtf8().constData() );
 //                input.evaluateJavaScript( "this.click()" );
 //            }
-
-
-
-//        }
-//        qDebug() << "Done parsing inputs.";
-//    }
+        }
+        qDebug() << "Done parsing inputs.";
+    }
 
 
 

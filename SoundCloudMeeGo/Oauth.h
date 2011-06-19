@@ -12,7 +12,12 @@ public:
     Oauth();
     ~Oauth();
 
+    void setLogin( QString& _strLogin );
+    void setPassword( QString& _strPassword );
+
     QString getAccessToken();
+
+    void start();
 
 
 signals:
@@ -28,6 +33,10 @@ private slots:
 private:
 
     Browser*    m_browser;
+
+    QString     m_strLogin;
+    QString     m_strPassword;
+
     QString     m_strAccessToken;
 
 };

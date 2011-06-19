@@ -32,7 +32,7 @@ public:
 
     void Init();
     Q_INVOKABLE void quit();
-    Q_INVOKABLE void login();
+    Q_INVOKABLE void login(QString strLogin, QString strPassword);
 
     void setOrientation(ScreenOrientation orientation);
     void showExpanded();

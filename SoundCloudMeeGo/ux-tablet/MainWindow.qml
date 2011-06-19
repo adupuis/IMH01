@@ -167,8 +167,8 @@ Rectangle {
         x:20
         y:110
 
-        function login() {
-            window.login();
+        function login(login,password) {
+            window.login(login,password);
         }
     }
 }
