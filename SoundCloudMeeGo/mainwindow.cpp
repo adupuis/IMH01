@@ -41,11 +41,11 @@ MainWindow::~MainWindow()
 void MainWindow::Init()
 {
      QString contentPath;
-#ifdef QT_DEBUG
-     contentPath = "/home/qdesert/HACKAT/IMH01/SoundCloudMeeGo";
-#else
+//#ifdef QT_DEBUG
+//     contentPath = "/home/qdesert/HACKAT/IMH01/SoundCloudMeeGo";
+//#else
      contentPath = QApplication::applicationDirPath();
-#endif
+//#endif
      setFocusPolicy(Qt::StrongFocus);
      setResizeMode(QDeclarativeView::SizeRootObjectToView);
      setSource(QUrl::fromLocalFile(contentPath + "/ux-tablet/MainWindow.qml"));
@@ -73,9 +73,9 @@ void MainWindow::login(QString strLogin, QString strPassword)
     connect(oauth, SIGNAL(sigAccessTokenAvailable(QString&)),
             this, SLOT(getTrackInfo(QString&)));
 #else
-    QTimer::singleShot(1000, rootObject(), SLOT(spectrumVisible()));
-    QTimer::singleShot(1100, this, SLOT(playTrack()));
-#endif
+    QTimer::singleShot(1000, rootObject(), SLOT(dashboardVisible()));
+//    QTimer::singleShot(1100, this, SLOT(playTrack()));
+#endif    
 }
 
 void MainWindow::setOrientation(ScreenOrientation orientation)
@@ -163,5 +163,4 @@ void MainWindow::playTrack(Track* track)
 void MainWindow::playerSeek(int mousex, int width)
 {
     m_pPlayerAudio->setPositionRelative( (float)mousex / (float)width );
-
 }

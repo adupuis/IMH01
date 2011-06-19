@@ -285,6 +285,10 @@ Rectangle {
             y: 0
             visible: false
         }
+        function dashboardVisible() {
+            login.visible = false;
+            dashboard.visible = true;
+        }
 
         function onSetWaveForm(img) {
             spectrum.spectrum.source = img;
